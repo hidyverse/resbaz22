@@ -14,12 +14,10 @@
 }
 
 
-.pink {
-  background-image: url(../../images/bitmoji-heidi.png);
-  background-color: '#FE7F9C';
-  font-family: 'Muli', sans-serif;
-  font-weight: 200;
-  color: '#7F9DFE';
+.footnote1 {
+  margin-bottom: -100px;
+  position: bottom;
+  font-size: 10px;
 }
 
 /* link color */

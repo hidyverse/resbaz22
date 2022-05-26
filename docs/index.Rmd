@@ -26,8 +26,7 @@ options(htmltools.dir.version = FALSE)
 episode_counter <- 0
 knitr::opts_chunk$set(
   collapse = TRUE,   
-  comment = "#>",
-  cache = TRUE
+  comment = "#>"
 )
 ```
 
@@ -68,9 +67,10 @@ class: title-slide, center, bottom
 # Getting Started (`r emo::ji("vertical_traffic_light")`)
 
 - My background
-- Introductions
-- Tour of R Studio IDE
+- Introductions in the HackMD
 - Double check downloads
+- Tour of R Studio IDE
+- Download packages
 
 ---
 
@@ -92,6 +92,7 @@ class: title-slide, center, bottom
 ---
 background-image: url(https://r3-rmedicine.netlify.app/slides/images/quarto-how.png)
 background-size: 102%
+background-position: bottom
 
 # How does Quarto work?
 
@@ -143,9 +144,8 @@ knitr::include_graphics("images/doll.png")
 background-image: url(images/reproducibility_dolls.png)
 background-size: cover
 class: top, center
-<br>
-<br>
-.footnote[https://www.americangirl.com/shop/c/welliewishers]
+
+.footnote1[https://www.americangirl.com/shop/c/welliewishers]
 
 ---
 class: middle, inverse, center
@@ -409,7 +409,8 @@ knitr::opts_chunk$set(
 ]
 
 ---
-# R
+# Code
+## R
 
 ```{r echo=FALSE, fig.align='center'}
 meme_get("DistractedBf") %>% 
@@ -417,8 +418,8 @@ meme_get("DistractedBf") %>%
 ```
 
 ---
-
-# Python
+# Code
+## Python
 
 With [`python3`](https://www.python.org/downloads/) and the `jupyter` package installed...Quarto can render 
 - python code within a `.qmd`
@@ -431,7 +432,8 @@ background-image: url(images/ijulialogo.png)
 background-position: bottom
 background-size: 50%
 
-# Julia
+# Cide
+## Julia
 
 - In order to render documents with embedded Julia code you’ll need to install the following components:
 
@@ -440,8 +442,8 @@ background-size: 50%
   - Revise.jl
 
 ---
-
-# Observable
+# Code
+## Observable
 
 - **Observable** = Bar of toppings `r emo::ji("chocolate_bar")` options where **Java Script** = Vanilla ice cream `r emo::ji("ice_cream")`
 - Create and publish (and steal) observable resources on the hub @ https://observablehq.com/
@@ -503,13 +505,9 @@ class: middle, center, inverse
   - button
   - Command (or Cmd) `⌘` + Option (or Alt) `⌥` +  `i` (Mac)
   - Ctrl + Alt + `i` (Windows/Linux)
-
---
-
 - Run chunks
   - interactively (show button)  
   - whole doc (knit button or run all chunks)
-
 - can use even if target engine is jupyter! Add kernel to YAML
 
 ---
@@ -541,8 +539,8 @@ background-position: right
 
 # Extensions
 
-### Books
-### Websites
+- Books
+- Websites
 
 
 ---
@@ -590,3 +588,7 @@ class: middle, center
 ## TYSM
 
 
+???
+
+please head to the business meeting
+would love to see you at hacky hour later

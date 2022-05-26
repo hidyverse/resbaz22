@@ -1,0 +1,176 @@
+---
+title: "Example Quarto Report"
+author: "Heidi Steiner"
+date: "`r Sys.Date()`"
+format: html
+execute: 
+  echo: false
+---
+
+
+```{r}
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(comment = " ")
+
+library(knitr)
+library(skimr)
+library(survival)
+library(tidyverse)
+
+ggplot2::theme_set(ggplot2::theme_minimal())
+```
+
+## Clinical Trial/Study Report 
+
+The lung data set is found in the [`survival`](https://github.com/therneau/survival) R package. Try to load the lung data set in R by issuing the following commands at the console:
+
+```{r}
+#| eval: false
+
+install.packages("survival")
+library(survival)
+lung
+```
+
+See the **data dictionary** in the markdown table below: 
+
+|Column Name|Key|
+|:-------|:--|
+|inst|Institution code|
+|status|	censoring status 1=censored, 2=dead|
+|age|	Age in years|
+|sex|	Male=1 Female=2|
+|time|	Survival time in days|
+|ph.ecog|	ECOG performance score (0=good 5=dead)|
+|ph.karno|	Karnofsky performance score (bad=0-good=100) rated by physician|
+|pat.karno|	Karnofsky performance score as rated by patient|
+|meal.cal|	Calories consumed at meals|
+|wt.loss|	Weight loss in last six months|
+
+:::{.callout-caution collapse="true"}
+### Expand to Learn about R
+
+* Use R inside Quarto to create reproducible tables and figures with your data. If you're already using R for your programming, Quarto is very similar to RMarkdown! 
+
+* Load your data and call it back throughout the document to save yourself time when you update the data in the report. 
+
+* Many packages, such as [`dplyr`](https://dplyr.tidyverse.org/) facilitate the ease of exploring your data. `glimpse()` shows us the dimensions of our dataframe and then the first 19 observations of each column (and the column type (i.e. 'fct' for factor)). 
+
+:::
+
+```{r}
+#| eval: false
+mockdata = read_csv("lungdat_v1.csv")
+```
+
+
+```{r}
+#| message: false
+#| echo: false
+mockdata = read_csv("lungdat_v1.csv") %>% 
+  mutate_at(.vars = c("inst", "status", "sex", "ph.ecog"),.funs = as.factor) 
+```
+
+:::{.callout-note}
+Note that there are five types of callouts, including:
+`note`, `tip`, `warning`, `caution`, and `important`.
+:::
+
+
+```{r}
+#| comment: " "
+#| eval: false
+mockdata %>%  
+  skim()
+```
+
+
+```{r}
+#| label: fig-lung
+#| fig-cap: Weight Loss Over Time by Recruitment Site
+#| warning: false
+mockdata %>% 
+  ggplot(aes(time, wt.loss, color = inst)) + 
+  geom_line() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal"
+    )
+```
+
+
+:::{.callout-caution collapse="true"}
+### Expand to Learn about Observable 
+
+* Quarto includes support for Observable JS (JavaScript)
+* [create and publish notebooks](https://observablehq.com/)
+* use Observable JS (“OJS”) in standalone documents 
+  + works in any Quarto document (plain markdown as well as Jupyter and Knitr documents)
+  + include your code in an {ojs} executable code block
+
+
+
+
+```{ojs}
+//  First we create an {ojs} cell that reads in our data using `FileAttachment`
+
+data = FileAttachment("lungdat_v1.csv").csv()
+```
+
+
+
+```{ojs}
+//"Now we write the filtering function that will transform the data read from the CSV using the values of [time] and [status]" - [Quarto Documentation](https://quarto.org/docs/computations/ojs.html)
+
+filtered = data.filter(function(lung) {
+  return time_min < lung.time && status.includes(lung.status);
+})
+```
+
+```{ojs}
+// Here, we decide which data we want included in the interactive plot
+
+viewof time_min = Inputs.range(
+  [15, 450], 
+  {value: 35, step: 8, label: "Survival Time (days):"}
+)
+viewof status = Inputs.checkbox(
+  ["1", "2"], 
+  { value: ["1", "2"], 
+    label: "Status:"
+  }
+)
+```
+
+```{ojs}
+// Finally, make the plot! 
+Plot.rectY(filtered, // here's our data
+  Plot.binX( // plot a histogram
+    {y: "count"}, // y axis is count of x axis
+    {x: "inst", fill: "ph.ecog", thresholds: 8} // x axis is each recruitment site, color represents the ecog score described by a physician 
+  ))
+  .plot({
+    marks: [
+      Plot.frame(),
+    ]
+  }
+)
+```
+:::
+
+
+:::{.callout-tip}
+
+### Quarto Summary
+
+- QMD can be used to create data driven reports for your collaborators or even to write entire manuscripts! 
+- QMD anatomy includes 
+  1. YAML metadata  
+  1. markdown text  
+  1. code   
+  1. output
+- QMD is wizardry! 
+
+:::

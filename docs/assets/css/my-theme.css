@@ -1,5 +1,5 @@
 .remark-slide-content p, ul, ol, li {
-  font-size: 22px;
+  font-size: 30px;
 }
 
 .remark-slide-content h1 {
@@ -11,6 +11,15 @@
 .title {
   font-family: 'Prata', serif;
   font-weight: 400;
+}
+
+
+.pink {
+  background-image: url(../../images/bitmoji-heidi.png);
+  background-color: '#FE7F9C';
+  font-family: 'Muli', sans-serif;
+  font-weight: 200;
+  color: '#7F9DFE';
 }
 
 /* link color */

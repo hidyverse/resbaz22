@@ -1,6 +1,6 @@
 ---
 title: "Example Quarto Report"
-author: "Heidi Steiner"
+author: "Heidi E. Steiner"
 date: "`r Sys.Date()`"
 format: html
 execute: 
@@ -28,6 +28,7 @@ The lung data set is found in the [`survival`](https://github.com/therneau/survi
 
 ```{r}
 #| eval: false
+#| echo: true
 
 install.packages("survival")
 library(survival)
@@ -37,7 +38,7 @@ lung
 See the **data dictionary** in the markdown table below: 
 
 |Column Name|Key|
-|:-------|:--|
+|:-------:|:--:|
 |inst|Institution code|
 |status|	censoring status 1=censored, 2=dead|
 |age|	Age in years|
@@ -60,15 +61,11 @@ See the **data dictionary** in the markdown table below:
 
 :::
 
-```{r}
-#| eval: false
-mockdata = read_csv("lungdat_v1.csv")
-```
 
 
 ```{r}
 #| message: false
-#| echo: false
+
 mockdata = read_csv("lungdat_v1.csv") %>% 
   mutate_at(.vars = c("inst", "status", "sex", "ph.ecog"),.funs = as.factor) 
 ```
@@ -81,7 +78,7 @@ Note that there are five types of callouts, including:
 
 ```{r}
 #| comment: " "
-#| eval: false
+#| echo: true
 mockdata %>%  
   skim()
 ```
@@ -111,7 +108,7 @@ mockdata %>%
   + include your code in an {ojs} executable code block
 
 
-
+:::
 
 ```{ojs}
 //  First we create an {ojs} cell that reads in our data using `FileAttachment`
@@ -158,7 +155,7 @@ Plot.rectY(filtered, // here's our data
   }
 )
 ```
-:::
+
 
 
 :::{.callout-tip}

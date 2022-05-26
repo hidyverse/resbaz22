@@ -64,20 +64,17 @@ class: title-slide, center, bottom
 ######  All content is [RStudio Education](https://github.com/rstudio-education/rmd4medicine), CC-BY. All art (unless otherwise noted) is by [Desirée De Leon](https://desiree.rbind.io/) and [Allison Horst](https://www.allisonhorst.com/), CC-BY-NC-ND.
 ]
 
+---
+# Getting Started (`r emo::ji("vertical_traffic_light")`)
+
+- My background
+- Introductions
+- Tour of R Studio IDE
+- Double check downloads
 
 ---
-class: middle, center
 
 # What is Quarto?
-
-```{r echo=FALSE}
-meme_get("DistractedBf") %>% 
-  meme_text_distbf("Quarto", "Researchers", "Rmd")
-```
-
----
-
-# What *is* Quarto?
 
 1. ["An authoring framework for data science."](https://quarto.org/docs/guide/) (`r emo::ji("heavy_check_mark")`)
 
@@ -94,12 +91,15 @@ meme_get("DistractedBf") %>%
 
 ---
 background-image: url(https://r3-rmedicine.netlify.app/slides/images/quarto-how.png)
-background-size: 120%
+background-size: 102%
 
 # How does Quarto work?
 
 
 ---
+background-image: url(images/Pandoc_magic.jpeg)
+background-position: bottom
+background-size: 30%
 
 # How *does* Quarto work?
 
@@ -143,7 +143,8 @@ knitr::include_graphics("images/doll.png")
 background-image: url(images/reproducibility_dolls.png)
 background-size: cover
 class: top, center
-
+<br>
+<br>
 .footnote[https://www.americangirl.com/shop/c/welliewishers]
 
 ---
@@ -160,8 +161,8 @@ class: your-turn
 
 # First look
 
-Explore `01-report.qmd`. 
-Look at the source, then `r emo::ji("arrow")` **Render** to HTML.
+Explore `index.qmd`. 
+Look at the source, then `r emo::ji("right_arrow")` **Render** to HTML.
 
 Try to identify these parts in the source and the output:
 
@@ -173,7 +174,7 @@ Try to identify these parts in the source and the output:
 
 1. The **output**
 
-**If this was easy**, try to identify global code chunk options set in the YAML!
+**If this was easy**, try to identify global code chunk options!
 
 
 ```{r echo = FALSE}
@@ -252,7 +253,7 @@ Use **https://quarto.org/docs/output-formats/html-basics.html** to:
 
 `r emo::ji("right_arrow")` **Render** to HTML to see the output.
 
-**If this was easy**, store the intermediary `.md` file during rendering! 
+**If this was easy**, store the intermediary `.md` file! 
 
 
 ```{r echo = FALSE}
@@ -263,17 +264,17 @@ countdown(minutes = 2)
 
 answers: 
 
-author: your name
-toc: true
-theme: spacelab
-keep-md: true
+format: 
+  html:
+    keep-md: true
+    toc: true
+    theme: spacelab
 
 ---
 
 
 # What is hard about YAML?
 
-.pull-left1[
 + Indentations matter
 
 + Rarely informative error messages
@@ -285,7 +286,7 @@ keep-md: true
 + Easy to forget the possible `values` for a given `key`
 
 + Quarto is annoyingly different from R Markdown
-]
+
 
 ---
 class: inverse, center, middle
@@ -340,31 +341,10 @@ class: inverse, center, middle
 # Code
 
 
----
-
-# Add chunks
-
-button or
-
-Command (or Cmd) `⌘` + Option (or Alt) `⌥` +  `i` (Mac)
-
-Ctrl + Alt + `i` (Windows/Linux)
-
---
-
-# Run chunks
-
-
-interactively (show button)  
-
-whole doc (knit button or run all chunks)
 
 ---
 
-# R 
-
-
-### Chunk labels
+#  Chunk labels
 
 
 ````
@@ -395,8 +375,7 @@ class: middle, center
 ]
 
 ---
-# R
-### The setup chunk
+#  The setup chunk
 
 .pull-left1[
 
@@ -430,12 +409,27 @@ knitr::opts_chunk$set(
 ]
 
 ---
+# R
+
+```{r echo=FALSE, fig.align='center'}
+meme_get("DistractedBf") %>% 
+  meme_text_distbf("Quarto", "Researchers", "Rmd")
+```
+
+---
 
 # Python
 
-### some cool thing? 
+With [`python3`](https://www.python.org/downloads/) and the `jupyter` package installed...Quarto can render 
+- python code within a `.qmd`
+- any Jupyter notebook (.ipynb)
+
+Use `quarto render document.ipynb` at the command line! 
 
 ---
+background-image: url(images/ijulialogo.png)
+background-position: bottom
+background-size: 50%
 
 # Julia
 
@@ -445,56 +439,40 @@ knitr::opts_chunk$set(
   - IJulia
   - Revise.jl
 
-- you’ll always run quarto preview first to setup a live preview of changes
 ---
 
 # Observable
 
-- **Observable** = Bar of toppings options where **Java Script** = Vanilla ice cream `r emo::ji("ice_cream")`
-
-- Create and publish (and steal) observable resources on the hub! https://observablehq.com/
-
+- **Observable** = Bar of toppings `r emo::ji("chocolate_bar")` options where **Java Script** = Vanilla ice cream `r emo::ji("ice_cream")`
+- Create and publish (and steal) observable resources on the hub @ https://observablehq.com/
 - Add your code to an {ojs} executable code block
+- Interactivity!
+  - Add to help readers explore more deeply 
+  - not the only option...
+    - shiny, html widgets, jupyter widgets
 
-### Interactivity
-- Add to help readers explore more deeply 
-- not the only option...
-  - shiny, html widgets, jupyter widgets
-
-
-
----
-class: inverse, center, middle
-
-<span class="fa-stack fa-4x">
-  <i class="fa fa-circle fa-stack-2x" style="color: #fff;"></i>
-  <strong class="fa-stack-1x" style="color:#2f5275;">`r (episode_counter <- episode_counter + 1)` </strong>
-</span> 
-
-# Output
 
 ---
 class: your-turn
 
-# Your turn
-
-## New data dump! `r emo::ji("newspaper")`
+# Your turn `r emo::ji("newspaper")`
 
 Data from more sites just came in &mdash; we now have data for 18 study sites and need to update our report.
 
-1. Replace `lungdat_v1.csv` with `lungdat_v2.csv` in the file `01-report.qmd`.  `r emo::ji("shushing_face")` *hint* x2! 
+1. Replace `lungdat_v1.csv` with `lungdat_v2.csv` in the file `index.qmd`.  `r emo::ji("shushing_face")` *hint* x2! 
 
 1. `r emo::ji("right_arrow")` **Render** to HTML. Do you see data for all sites?
 
-<br>
+**If this was easy**, and you have `jupyter` installed, try outputting to `.ipynb` format!
 
-**If this was easy**, try outputting to `.ipynb` format!
-
-*hint*...you might need `execute:` in your YAML header! 
 
 ```{r echo = FALSE}
 countdown(minutes = 2)
 ```
+
+???
+
+format: ipynb ?
 
 
 ---
@@ -506,44 +484,101 @@ class: middle, center, inverse
 </span> 
 
 
+# More 
+
+
+---
 # Editors
 
+## Jupyter Lab
+
+- you’ll always run `quarto preview` at the command line first to setup a live preview of changes
+- in jupyter notebook use `quarto preview document.ipynb` to preview a live version of your document
 
 ---
-# Projects in Quarto
+# Editors 
+## R Studio (v2022.02)
+
+- Add chunks
+  - button
+  - Command (or Cmd) `⌘` + Option (or Alt) `⌥` +  `i` (Mac)
+  - Ctrl + Alt + `i` (Windows/Linux)
+
+--
+
+- Run chunks
+  - interactively (show button)  
+  - whole doc (knit button or run all chunks)
+
+- can use even if target engine is jupyter! Add kernel to YAML
+
+---
+# Editors
+## VS Code
+
+Benefits: 
+
+- Integrated render and preview for Quarto documents
+- Syntax highlighting for markdown and embedded languages
+- Completion and diagnostics for YAML options
+- Completion for embedded languages (e.g. Python, R, Julia, etc.)
+- Commands and key-bindings for running cells and selected lines.
+- Live preview for LaTeX math as well as Mermaid and Graphviz diagrams
 
 
 ---
+background-image: url(images/rproj.png)
+background-size: contain
+background-position: right
+
+# Quarto Project
+
+
+---
+background-image: url(images/rmd-quarto.jpg)
+background-size: contain
+background-position: right
+
 # Extensions
 
 ### Books
 ### Websites
 
-???
 
-imposter meme?
+---
+class: middle, center, inverse
+
+<span class="fa-stack fa-4x">
+  <i class="fa fa-circle fa-stack-2x" style="color: #fff;"></i>
+  <strong class="fa-stack-1x" style="color:#2f5275;">!</strong>
+</span> 
+
+
+#  `r emo::ji("envelope_with_arrow")`
+
+---
+# Sharing
+
+- Render and release! 
+  - (if it renders, it's safe to send)
+- Upload your whole directory into [netlify drop](https://app.netlify.com/drop) to share (a doc, a website, a book, anything!) in ~30 seconds
+
 
 ---
 
 # Take-aways
 
 
-`r emo::ji("heavy_check_mark")` **Document your document:** use YAML to set up meaningful metadata
+`r emo::ji("heavy_check_mark")` **Document your document:** use YAML to set up meaningful metadata and to add options to your chosen output format
 
-
-`r emo::ji("heavy_check_mark")` **Style your document:** use YAML to add options to your chosen output format
-
-
-`r emo::ji("heavy_check_mark")` **Organize your text:** use markdown headers with `#`
+`r emo::ji("heavy_check_mark")` **Organize your text:** use headers with `#` and add tables, links, figures, special characters, and more in markdown.
 
 `r emo::ji("heavy_check_mark")` `r emo::ji("right_arrow")` render early, `r emo::ji("right_arrow")` render often
 
-`r emo::ji("heavy_check_mark")` **Html is easier to render than pdf**  
+`r emo::ji("heavy_check_mark")` **Html is easier to render (and customize) than pdf**  
 because you dont need to go through tinytex you can "get away" with html reports do that!
 
-- **When you *do* get tinytex errors, start stripping down your document until you find the problem part**  
-
-`r emo::ji("heavy_check_mark")` **Customizing** html reports is easier than pdf  
+  - **When you *do* get tinytex errors, start stripping down your document until you find the problem part**  
 
 
 

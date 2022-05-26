@@ -1,10 +1,5 @@
-arsenal
-countdown
-gt
-janitor
 knitr
-memer
-quarto
+skimr
 survival
 tidyverse
 ggplot2
@@ -15,4 +10,10 @@ purrr
 dplyr
 stringr
 forcats
+arsenal
+countdown
+gt
+janitor
+memer
+quarto
 ymlthis
